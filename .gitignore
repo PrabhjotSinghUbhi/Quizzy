@@ -3,3 +3,9 @@ node_modules/
 
 # Ignore VSCode settings
 .vscode/
+
+#Ignore package.json
+package.json
+package-lock.json
+
+vite.config.ts
