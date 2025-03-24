@@ -1,7 +1,6 @@
 let TOTAL = 3;
 let Score = 0;
 
-// Object for questions and answers.
 const questionAnswers = {
     question: [
         "Which is largest animal in the world",
@@ -17,82 +16,56 @@ const questionAnswers = {
         ["Asia", "Australia", "Arctic", "Africa"]
     ],
 
-    // answers: [
-    //     "Blue Whale", "Vatican City", "Sahara", "Australia"
-    // ]
-    answers: [
-        1, 0, 2, 2
-    ]
+    answers: [1, 0, 2, 2]
 }
 
 console.log(questionAnswers);
 
-//variable that contains the question.
-const question = document.querySelector("#question")
+const question = document.querySelector("#question");
+const options = document.querySelectorAll(".options");
+const nextBtn = document.getElementById("next");
+const qNo = document.getElementById("qNo");
+const sectionOption = document.querySelectorAll("li");
 
-//The Options.
-const options = document.querySelectorAll(".options")//Return a NODE LIST
-
-//The next btn
-const nextBtn = document.getElementById("next")
 let currentQuestion = 0;
-
-//The Question No.
-const qNo = document.getElementById("qNo")
-
-//THE Whole option Section
-const sectionOption = document.querySelectorAll("li")
+nextBtn.disabled = true;
 
 function updateContent() {
-    if (TOTAL > 0) {
+    if (currentQuestion < questionAnswers.question.length - 1) {
         currentQuestion += 1;
 
-        //Updating Question No.
         qNo.innerHTML = `${currentQuestion + 1}.`;
-
-        // Updating Question
         question.textContent = questionAnswers.question[currentQuestion];
 
-        // Loading Options.
         options.forEach((element, index) => {
-            element.innerHTML = questionAnswers.options[currentQuestion][index]
-            console.log(element.innerHTML);
+            element.innerHTML = questionAnswers.options[currentQuestion][index];
         });
-        TOTAL -= 1;
 
-        sectionOption.forEach((element, index) => {
-            element.style.pointerEvents = "auto"
-            sectionOption[index].style.background = "black"
-        })
-    }
-    console.log();
-}
-
-// takes int input.
-function validateAnswer(checkAnswer) {
-    console.log(checkAnswer);
-}
-
-let i = 0;
-for (let index = 0; index <= 3; index++) {
-    sectionOption[index].addEventListener("click", () => {
-        // sectionOption[index].style.display = "none"
-
-        console.log(questionAnswers.answers[i], index)
-
+        // Reset styles using Tailwind classes instead of direct styles
         sectionOption.forEach((element) => {
-            element.style.pointerEvents = "none"
-        })
+            element.classList.remove("bg-green-500", "bg-red-500", "text-white");
+            element.classList.add("bg-transparent", "dark:bg-black", "hover:bg-slate-800", "cursor-pointer");
+            element.style.pointerEvents = "auto";
+        });
 
-        if (questionAnswers.answers[i] === index) {
-            sectionOption[index].style.background = "green"
-
-        } else {
-            sectionOption[index].style.background = "red"
-            sectionOption[questionAnswers.answers[i]].style.background = "green";
-        }
-        i += 1;
-    })
+        nextBtn.disabled = true;
+    }
 }
 
-nextBtn.addEventListener("click", updateContent)
+// Validate Answer
+sectionOption.forEach((element, index) => {
+    element.addEventListener("click", () => {
+        sectionOption.forEach((el) => el.style.pointerEvents = "none");
+
+        if (questionAnswers.answers[currentQuestion] === index) {
+            element.classList.add("bg-green-500", "text-white");
+        } else {
+            element.classList.add("bg-red-500", "text-white");
+            sectionOption[questionAnswers.answers[currentQuestion]].classList.add("bg-green-500", "text-white");
+        }
+
+        nextBtn.disabled = false;
+    });
+});
+
+nextBtn.addEventListener("click", updateContent);
