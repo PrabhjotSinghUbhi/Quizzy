@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="src/output.css" rel="stylesheet">
-    <script src="./js/script.js"></script>
+    <script src="./js/script.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Recursive:wght@300..1000&display=swap');
     </style>
@@ -25,20 +25,56 @@
 
         <!-- THE QUESTION -->
         <div class="p-4 ml-5.5 dark:bg-black dark:text-white">
-           <span id="qNo">1.</span> Which is largest animal in the world ?
+            <span id="qNo">1.</span> <span id="question">Which is largest animal in the world ?</span>
         </div>
-
-
         <!-- THE OPTIONS -->
         <ul class="grid gap-4 text-black dark:bg-black dark:text-white">
 
-
-            <li class="border rounded-full p-1 w-[80%] mx-auto cursor-pointer ">
+            <!-- Option - 1 -->
+            <li class="border hover:bg-slate-800 rounded-full p-1 w-[80%] mx-auto cursor-pointer ">
                 <article class="flex items-center ">
                     <div class="w-[50px] h-[50px] flex items-center justify-center border  font-bold rounded-full">
                         A
                     </div>
-                    <div class="ml-2.5 ">Shark</div>
+                    <div class=" ml-2.5 options">Shark</div>
+                </article>
+            </li>
+
+            <!-- Option - 2 -->
+            <li class="border hover:bg-slate-800 rounded-full p-1 w-[80%] mx-auto cursor-pointer ">
+                <article class="flex items-center ">
+                    <div class="w-[50px] h-[50px] flex items-center justify-center border  font-bold rounded-full">
+                        B
+                    </div>
+                    <div class="ml-2.5 options">Blue Whale</div>
+                </article>
+            </li>
+
+            <!-- Option - 3 -->
+            <li class="border hover:bg-slate-800 rounded-full p-1 w-[80%] mx-auto cursor-pointer ">
+                <article class="flex items-center ">
+                    <div class="w-[50px] h-[50px] flex items-center justify-center border  font-bold rounded-full">
+                        C
+                    </div>
+                    <div class="ml-2.5 options">Elephant</div>
+                </article>
+            </li>
+
+            <!-- Option - 4 -->
+            <li class="border hover:bg-slate-800 rounded-full p-1 w-[80%] mx-auto cursor-pointer ">
+                <article class="flex items-center ">
+                    <div class="w-[50px] h-[50px] flex items-center justify-center border  font-bold rounded-full">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="white" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg> -->
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-6">
+                            <path
+                                d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
+                        </svg> -->
+                        D
+                    </div>
+                    <div class="ml-2.5 options">Giraffe</div>
                 </article>
             </li>
 
@@ -46,7 +82,8 @@
         </ul>
 
         <!-- THE BUTTON  -->
-        <button class="m-4 text-2xl border place-self-center rounded-3xl p-2 pl-4 pr-4 dark:bg-black dark:text-white">
+        <button id="next"
+            class="m-4 hover:bg-amber-100 hover:text-black hover:font-bold cursor-pointer  border place-self-center rounded-3xl p-2 pl-4 pr-4 dark:bg-black dark:text-white">
             Next
         </button>
 
