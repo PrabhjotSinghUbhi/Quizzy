@@ -14,71 +14,19 @@
 
 <body class="Poppins dark:bg-black dark:text-white">
 
-    <section class="grid w-[80%] max-w-[650px] min-h-1/2 mx-auto border mt-11 ">
+    <section class="grid w-[80%] max-w-[650px] min-h-1/2 mx-auto border mt-11">
 
-        <!-- THE HEADING -->
         <header class="text-4xl font-bold text-center p-2 mt-2  dark:text-white dark:bg-black text-slate-900">
             Simple Quiz
         </header>
 
-        <!-- ---------------------------------------------------------------------- -->
         <hr class=" w-[80%] mx-auto dark:bg-black dark:text-white">
 
-        <!-- THE QUESTION -->
-        <div class="p-4 ml-5.5 dark:bg-black dark:text-white">
-            <span id="qNo">1.</span> <span id="question">Which is largest animal in the world ?</span>
+        <div class=" questionDiv p-4 ml-5.5 dark:bg-black text-2xl dark:text-white">
+            <span id="qNo"></span> <span id="question"></span>
         </div>
-        <!-- THE OPTIONS -->
-        <ul class="grid gap-4 text-black dark:bg-black dark:text-white">
 
-            <!-- Option - 1 -->
-            <li class="border hover:bg-slate-800 rounded-full p-1 w-[80%] mx-auto cursor-pointer ">
-                <article class="flex items-center ">
-                    <div class="w-[50px] h-[50px] flex items-center justify-center border  font-bold rounded-full">
-                        A
-                    </div>
-                    <div class=" ml-2.5 options">Shark</div>
-                </article>
-            </li>
-
-            <!-- Option - 2 -->
-            <li class="border hover:bg-slate-800 rounded-full p-1 w-[80%] mx-auto cursor-pointer ">
-                <article class="flex items-center ">
-                    <div class="w-[50px] h-[50px] flex items-center justify-center border  font-bold rounded-full">
-                        B
-                    </div>
-                    <div class="ml-2.5 options">Blue Whale</div>
-                </article>
-            </li>
-
-            <!-- Option - 3 -->
-            <li class="border hover:bg-slate-800 rounded-full p-1 w-[80%] mx-auto cursor-pointer ">
-                <article class="flex items-center ">
-                    <div class="w-[50px] h-[50px] flex items-center justify-center border  font-bold rounded-full">
-                        C
-                    </div>
-                    <div class="ml-2.5 options">Elephant</div>
-                </article>
-            </li>
-
-            <!-- Option - 4 -->
-            <li class="border hover:bg-slate-800 rounded-full p-1 w-[80%] mx-auto cursor-pointer ">
-                <article class="flex items-center ">
-                    <div class="w-[50px] h-[50px] flex items-center justify-center border  font-bold rounded-full">
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="white" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                        </svg> -->
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-6">
-                            <path
-                                d="M5.28 4.22a.75.75 0 0 0-1.06 1.06L6.94 8l-2.72 2.72a.75.75 0 1 0 1.06 1.06L8 9.06l2.72 2.72a.75.75 0 1 0 1.06-1.06L9.06 8l2.72-2.72a.75.75 0 0 0-1.06-1.06L8 6.94 5.28 4.22Z" />
-                        </svg> -->
-                        D
-                    </div>
-                    <div class="ml-2.5 options">Giraffe</div>
-                </article>
-            </li>
-
+        <ul id="optionContainer" class="grid gap-4 text-black dark:bg-black dark:text-white">
 
         </ul>
 

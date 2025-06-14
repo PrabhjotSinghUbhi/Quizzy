@@ -1,71 +1,93 @@
-let TOTAL = 3;
-let Score = 0;
-
-const questionAnswers = {
-    question: [
-        "Which is largest animal in the world",
-        "Which is the smallest country in the world?",
-        "Which is the largest Desert in the world?",
-        "Which is the smallest continent in the world"
-    ],
-
-    options: [
-        ["Shark", "Blue Whale", "Elephant", "Giraffe"],
-        ["Vatican City", "Bhutan", "Nepal", "Sri Lanka"],
-        ["Kalahari", "Gobi", "Sahara", "Antarctica"],
-        ["Asia", "Australia", "Arctic", "Africa"]
-    ],
-
-    answers: [1, 0, 2, 2]
-}
-
-console.log(questionAnswers);
-
-const question = document.querySelector("#question");
-const options = document.querySelectorAll(".options");
-const nextBtn = document.getElementById("next");
-const qNo = document.getElementById("qNo");
-const sectionOption = document.querySelectorAll("li");
-
-let currentQuestion = 0;
-nextBtn.disabled = true;
-
-function updateContent() {
-    if (currentQuestion < questionAnswers.question.length - 1) {
-        currentQuestion += 1;
-
-        qNo.innerHTML = `${currentQuestion + 1}.`;
-        question.textContent = questionAnswers.question[currentQuestion];
-
-        options.forEach((element, index) => {
-            element.innerHTML = questionAnswers.options[currentQuestion][index];
-        });
-
-        // Reset styles using Tailwind classes instead of direct styles
-        sectionOption.forEach((element) => {
-            element.classList.remove("bg-green-500", "bg-red-500", "text-white");
-            element.classList.add("bg-transparent", "dark:bg-black", "hover:bg-slate-800", "cursor-pointer");
-            element.style.pointerEvents = "auto";
-        });
-
-        nextBtn.disabled = true;
+const questionAnswer = [
+    {
+        question: "Which is largest animal in the world",
+        options: ["Shark", "Blue Whale", "Elephant", "Giraffe"],
+        answer: "Blue Whale"
+    },
+    {
+        question: "Which is the smallest country in the world?",
+        options: ["Vatican City", "Bhutan", "Nepal", "Sri Lanka"],
+        answer: "Vatican City"
+    },
+    {
+        question: "Which is the largest Desert in the world?",
+        options: ["Kalahari", "Gobi", "Sahara", "Antarctica"],
+        answer: "Antarctica"
+    },
+    {
+        question: "Which is the smallest continent in the world",
+        options: ["Asia", "Australia", "Arctic", "Africa"],
+        answer: "Arctic"
     }
+]
+
+const opt = ['A', 'B', 'C', 'D']
+
+const optionContainer = document.getElementById('optionContainer')
+const questionSpan = document.getElementById('question')
+const questionNoSpan = document.getElementById('qNo')
+const nextBtn = document.getElementById('next')
+const questionDiv = document.querySelector('.questionDiv')
+
+let currentIndex = 0
+let score = 0
+function startQuiz() {
+    currentIndex = 0
+    score = 0
+    showQuestionAndOptions(currentIndex)
 }
 
-// Validate Answer
-sectionOption.forEach((element, index) => {
-    element.addEventListener("click", () => {
-        sectionOption.forEach((el) => el.style.pointerEvents = "none");
-
-        if (questionAnswers.answers[currentQuestion] === index) {
-            element.classList.add("bg-green-500", "text-white");
+optionContainer.addEventListener('click', (e) => {
+    let listElement = e.target.closest('.listElement')
+    if (listElement) {
+        let chosen = listElement.querySelector('.optionText').textContent
+        if (chosen === questionAnswer[currentIndex].answer) {
+            score += 1
+            console.log("score: ", score);
+            listElement.classList.add("bg-green-500")
         } else {
-            element.classList.add("bg-red-500", "text-white");
-            sectionOption[questionAnswers.answers[currentQuestion]].classList.add("bg-green-500", "text-white");
+            listElement.classList.add("bg-red-500")
         }
+    }
+    currentIndex += 1
+    optionContainer.classList.add("pointer-events-none")
+})
 
-        nextBtn.disabled = false;
-    });
-});
+nextBtn.addEventListener('click', (e) => {
+    optionContainer.innerHTML = ''
 
-nextBtn.addEventListener("click", updateContent);
+    if (currentIndex < questionAnswer.length) {
+        optionContainer.classList.remove('pointer-events-none')
+        showQuestionAndOptions(currentIndex)
+    }
+
+    else if (currentIndex === questionAnswer.length) {
+        questionDiv.innerHTML = ''
+        optionContainer.innerHTML = `you scored ${score} out of ${questionAnswer.length}`
+        optionContainer.classList.add('text-center', 'font-semibold', 'text-2xl','mb-4')
+        nextBtn.remove()
+    }
+    else {
+        return
+    }
+})
+
+function showQuestionAndOptions(index) {
+    questionSpan.textContent = questionAnswer[index].question
+    questionNoSpan.textContent = `${index + 1}. `
+    questionAnswer[index].options.forEach((option, index) => {
+        let taskDiv = document.createElement('li')
+        taskDiv.classList.add("listElement", "border", "hover:bg-slate-800", "rounded-full", "p-1", "w-[80%]", "mx-auto", "cursor-pointer")
+        taskDiv.innerHTML = `
+            <article class="flex items-center ">
+                <div class="w-[50px] h-[50px] flex items-center justify-center border  font-bold rounded-full">
+                        ${opt[index]}
+                </div>
+                <div class="optionText ml-2.5 options">${option}</div>
+            </article>
+        `
+        optionContainer.appendChild(taskDiv)
+    })
+}
+
+startQuiz()
